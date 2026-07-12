@@ -23,6 +23,8 @@ vim.g.maplocalleader = "\\"
 vim.g.netrw_liststyle = 1
 vim.g.netrw_sort_by = "exten"
 
+vim.o.guifont = "MesloLGM Nerd Font:h13"
+
 local keymap = vim.keymap
 
 keymap.set("i", "jk", "<Esc>", { desc = "Exit Insert mode with jk" })
