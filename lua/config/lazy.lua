@@ -23,7 +23,7 @@ vim.g.maplocalleader = "\\"
 vim.g.netrw_liststyle = 1
 vim.g.netrw_sort_by = "exten"
 
-vim.o.guifont = "MesloLGM Nerd Font:h13"
+vim.o.guifont = "MesloLGM NF:h12"
 
 local keymap = vim.keymap
 
