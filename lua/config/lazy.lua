@@ -22,8 +22,9 @@ vim.g.mapleader = " "
 vim.g.maplocalleader = "\\"
 vim.g.netrw_liststyle = 1
 vim.g.netrw_sort_by = "exten"
+vim.g.netrw_bufsettings = "noma nomod nu rnu nobl nowrap ro"
 
-vim.o.guifont = "MesloLGM NF:h12"
+vim.o.guifont = "JetBrainsMono Nerd Font"
 
 local keymap = vim.keymap
 

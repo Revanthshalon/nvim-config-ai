@@ -12,6 +12,11 @@ return {
 			protols = {
 				root_dir = vim.fs.root(0, { "protols.toml", "buf.yaml", ".git" }),
 			},
+			docker_compose_language_service = {
+				cmd = { "docker-compose-langserver", "--stdio" },
+				filetypes = { "yaml" },
+				root_markers = { "docker-compose.yaml", "docker-compose.yml", "compose.yaml", "compose.yml" },
+			},
 			postgres_lsp = {},
 			ts_ls = {},
 			tofu_ls = {
