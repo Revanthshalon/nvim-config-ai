@@ -19,6 +19,53 @@ return {
 			},
 			postgres_lsp = {},
 			ts_ls = {},
+			pyright = {
+				settings = {
+					python = {
+						analysis = {
+							autoSearchPaths = true,
+							useLibraryCodeForTypes = true,
+							diagnosticMode = "openFilesOnly",
+							typeCheckingMode = "basic",
+						},
+					},
+				},
+				before_init = function(_, config)
+					local function get_python_path(workspace)
+						-- 1. Check $VIRTUAL_ENV
+						if vim.env.VIRTUAL_ENV then
+							local venv_python = vim.fs.joinpath(vim.env.VIRTUAL_ENV, "bin", "python")
+							if vim.uv.fs_stat(venv_python) then
+								return venv_python
+							end
+						end
+
+						-- 2. Search for .venv or venv in workspace or parent directories
+						local match = vim.fs.find({ ".venv", "venv" }, { path = workspace, upward = true, type = "directory" })[1]
+						if match then
+							local venv_python = vim.fs.joinpath(match, "bin", "python")
+							if vim.uv.fs_stat(venv_python) then
+								return venv_python
+							end
+						end
+
+						-- 3. Fallback to system python
+						return vim.fn.exepath("python3") or vim.fn.exepath("python") or "python"
+					end
+
+					local root = config.root_dir or vim.fn.getcwd()
+					local python_path = get_python_path(root)
+					config.settings = config.settings or {}
+					config.settings.python = config.settings.python or {}
+					config.settings.python.pythonPath = python_path
+				end,
+			},
+			ruff = {
+				on_attach = function(client, _)
+					-- Disable hover in favor of Pyright
+					client.server_capabilities.hoverProvider = false
+				end,
+			},
 			tofu_ls = {
 				cmd = { "tofu-ls", "serve" },
 				filetypes = { "opentofu", "opentofu-vars" },
