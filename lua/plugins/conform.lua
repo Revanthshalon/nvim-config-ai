@@ -103,6 +103,7 @@ return {
 				graphql = { "prettier" },
 				liquid = { "prettier" },
 				lua = { "stylua" },
+				rust = { "rustfmt" },
 				toml = { "taplo" },
 				sql = { "pg_format" },
 				python = { "ruff_organize_imports", "ruff_format" },
