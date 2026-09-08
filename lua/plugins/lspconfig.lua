@@ -72,6 +72,15 @@ return {
 				root_dir = vim.fs.root(0, { ".terraform", ".git" }),
 			},
 			svelte = {},
+			clangd = {
+				cmd = {
+					"clangd",
+					"--background-index",
+					"--clang-tidy",
+					"--header-insertion=iwyu",
+					"--completion-style=detailed",
+				},
+			},
 			emmet_language_server = {},
 			rust_analyzer = {
 				settings = {
