@@ -19,17 +19,10 @@ return {
 			},
 			postgres_lsp = {},
 			ts_ls = {},
-			pyright = {
-				settings = {
-					python = {
+			basedpyright = {
 						analysis = {
-							autoSearchPaths = true,
-							useLibraryCodeForTypes = true,
-							diagnosticMode = "openFilesOnly",
 							typeCheckingMode = "basic",
 						},
-					},
-				},
 				before_init = function(_, config)
 					local function get_python_path(workspace)
 						-- 1. Check $VIRTUAL_ENV
@@ -151,6 +144,8 @@ return {
 		-- end
 		local cmp = require("blink.cmp")
 		local capabilities = cmp.get_lsp_capabilities()
+		-- blink capabilities for every server, incl. mason auto-enabled ones not in opts.servers (angularls, etc.)
+		vim.lsp.config("*", { capabilities = capabilities })
 		-- Configure servers using the new vim.lsp.config API
 		for server, config in pairs(opts.servers) do
 			config.capabilities = cmp.get_lsp_capabilities(config.capabilities or capabilities)

@@ -49,6 +49,7 @@ opt.splitright = true
 opt.splitbelow = true
 opt.termguicolors = true
 opt.foldmethod = "expr"
+opt.foldexpr = "v:lua.vim.treesitter.foldexpr()"
 
 -- Setup lazy.nvim
 require("lazy").setup({

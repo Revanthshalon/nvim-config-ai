@@ -93,8 +93,10 @@ return {
 	opts = {
 		ignored_filetypes = { "nofile", "quickfix", "prompt" },
 		ignored_buftypes = { "nofile" },
-		at_edge = "wrap",
-		move_cursor_same_row = true,
+    move = {
+      same_row = true,
+      at_edge = "wrap",
+    },
 	},
 	config = function(_, opts)
 		require("smart-splits").setup(opts)
